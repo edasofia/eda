@@ -1,0 +1,10 @@
+{
+    "id": "header-social-menu",
+    "class": "horizontal-menu",
+    "items": [
+        { "title": "twitter",   "class": "social-icon-24x24y social-icon-twitter" },
+        { "title": "facebook",  "class": "social-icon-24x24y social-icon-facebook" },
+        { "title": "google+",   "class": "social-icon-24x24y social-icon-googleplus" },
+        { "title": "wordpress", "class": "social-icon-24x24y social-icon-wordpress" }
+    ]
+}

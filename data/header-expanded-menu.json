@@ -1,0 +1,9 @@
+{
+    "id": "header-expanded-menu",
+    "class": "horizontal-menu",
+    "items": [
+        { "label": "shop" },
+        { "label": "photo gallery" },
+        { "label": "design gallery" }
+    ]
+}

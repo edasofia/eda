@@ -1,0 +1,11 @@
+{
+    "id": "header-menu",
+    "class": "horizontal-menu",
+    "items": [
+        { "label": "ABOUT" },
+        { "label": "BLOG" },
+        { "label": "PUBLICATIONS" },
+        { "label": "PROJECTS" },
+        { "label": "CONTACT" }
+    ]
+}

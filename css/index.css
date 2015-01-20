@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<!--
+/*
 The MIT License
 
 Copyright 2015 Erich.
@@ -21,21 +20,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
--->
-<html>
-    <head>
-        <title>Eda Sofia</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src='js/common.js'></script>
-        <script src='js/libs/mustache.js/mustache.js'></script>
-        <link href='css/common.css' rel='stylesheet' type='text/css'>
-        <link href='css/index.css' rel='stylesheet' type='text/css'>
-        <script>
-window.addEventListener( 'load', function () {
-    Resize.init();
-}, false );
-        </script>
-    </head>
-    <body><main></main><header></header><footer></footer></body>
-</html>
+*/
+/* 
+    Created on : Jan 20, 2015, 7:28:58 AM
+    Author     : Erich
+*/
+
