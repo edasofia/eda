@@ -57,20 +57,23 @@
                 document.body.classList.toggle( 'expand-header' );
             }, false );
             
-            var tempList = ['simple', 'template1', 'template2', 'template3'];
+            var tempList = ['simple', 'template1', 'template2', 'template3'],
+                k;
             for ( i = 0; i < 4; i++ ) {
-                _pageManager.addPage( tempList[i%tempList.length], {
+                _pageManager.addPage( k = tempList[i%tempList.length], {
+                    title: k,
                     content: "page",
                     index: i + 1,
                     "main-box": "main-box",
                     "items": [ "box 1", "box 2", "box 3", "box 4", ]
                 } );
-                _foot.appendChild( t = document.createElement( 'button' ) ).textContent = 'page ' + (i + 1);
+                _foot.appendChild( t = document.createElement( 'button' ) ).textContent = k;
                 t.pageIndex = i;
                 t.addEventListener( 'click', function () {
                     _pageManager.goPage( this.pageIndex )
                 }, false );
             }
+            _pageManager.goPage( 0 );
             
             _resize();
             window.addEventListener( 'resize', _resize, false );
