@@ -27,6 +27,7 @@
         _ArrayForEach = Array.prototype.forEach,
         _head, _main, _foot,
         _headMenu, _headExpandMenu, _headSocialMenu,
+        _pageManager, _mainPageGallery,
         _setMenuItemPadding = function ( menuElement ) {
             var n = menuElement.childElementCount,
                 t = '0 ' + Math.floor((menuElement.clientWidth - _ArrayReduce.call( menuElement.children, function ( sum, elt ) {
@@ -36,7 +37,7 @@
             return menuElement
         },
         _init = function () {
-            var elt, s, t;
+            var elt, i, t;
             (_head = document.querySelector( 'body>header' )).appendChild( _headMenu = _createMenu( t = require( 'data/header-menu.json' ) ) );
             _head.appendChild( elt = document.createElement( 'div' ) ).id = 'header-expanded-container';
             elt.appendChild( _headExpandMenu = _createMenu( require( 'data/header-expanded-menu.json' ) ) );
@@ -47,12 +48,29 @@
             elt.appendChild( t = document.createElement( 'input' ) ).type = 'email';
             t.placeholder = 'name@email.com';
             elt.appendChild( document.createElement( 'button' ) ).textContent = 'join';
-            _head.addEventListener( 'click', function () {
+            
+            _main = document.querySelector( 'body>main' );
+            _main.appendChild( _mainPageGallery = (_pageManager = new _PageGallery( 'main-page-gallery' )).gallery );
+            
+            _foot = document.querySelector( 'body>footer' );
+            _foot.querySelector( '#footer-toggle-header' ).addEventListener( 'click', function () {
                 document.body.classList.toggle( 'expand-header' );
             }, false );
             
-            _main = document.querySelector( 'body>main' );
-            _foot = document.querySelector( 'body>footer' );
+            var tempList = ['simple', 'template1', 'template2', 'template3'];
+            for ( i = 0; i < 4; i++ ) {
+                _pageManager.addPage( tempList[i%tempList.length], {
+                    content: "page",
+                    index: i + 1,
+                    "main-box": "main-box",
+                    "items": [ "box 1", "box 2", "box 3", "box 4", ]
+                } );
+                _foot.appendChild( t = document.createElement( 'button' ) ).textContent = 'page ' + (i + 1);
+                t.pageIndex = i;
+                t.addEventListener( 'click', function () {
+                    _pageManager.goPage( this.pageIndex )
+                }, false );
+            }
             
             _resize();
             window.addEventListener( 'resize', _resize, false );
@@ -60,7 +78,11 @@
         _resize = function () {
             var wide = window.innerWidth,
                 high = window.innerHeight,
-                hh = _head.offsetHeight;
+                hh = _head.offsetHeight,
+                cs = window.getComputedStyle( _main ),
+                padding = cs.padding.split( ' ' );
+            _mainPageGallery.style.width = ( _main.clientWidth - parseFloat(padding[1]) - parseFloat(padding[3]) ) + 'px';
+            _mainPageGallery.style.height = ( _main.clientHeight - parseFloat(padding[0]) - parseFloat(padding[2]) ) + 'px';
 //            var n = _headMenu.childElementCount,
 //                t = '0 ' + Math.floor((_headMenu.clientWidth - _ArrayReduce.call( _headMenu.children, function ( sum, elt ) {
 //                    return sum + elt.offsetWidth
@@ -154,6 +176,65 @@
                 xhr = null
             }
             return exp
+        },
+        _PageGallery = function ( id ) {
+            var pageList = [],
+                gallery, strip,
+                t;
+            if ( ! ( this instanceof _PageGallery ) )
+                debugger;
+            strip = (gallery = document.createElement( 'div' )).appendChild( document.createElement( 'strip' ) ),
+            gallery.className = 'page-gallery';
+            if ( id )
+                gallery.id = id;
+            
+            Object.defineProperties( this, {
+                gallery: { value: gallery },
+                strip: { value: strip },
+                addPage: { value: function ( template, view ) {
+                    var page, content, i;
+                    if ( arguments.length > 1 ) {
+                        _populate( content = document.createElement( 'div' ), template, view )
+                    } else if ( template instanceof Node ) {
+                        content = template
+                    } else {
+                        ( content = document.createElement( 'div' ) ).textContent = template
+                    }
+                    this.goPage( i = pageList.push( page = _addPage( strip, content ) ) - 1 );
+                    return i
+                } },
+                getPage: { value: function ( i ) { return pageList[i] } },
+                goPage: { value: function ( i ) {
+                    strip.style.left = (i * -100) + '%';
+                    return this
+                } },
+                removePage: { value: function ( i ) {
+                    var page = pageList[i];
+                    if ( page ) {
+                        page.parentElement.removeChild( page );
+                        pageList.splice( i, 1 );
+                    }
+                    return page
+                } }
+            } );
+        },
+        _addPage = function ( pageGallery, page ) {
+            var pageContainer = document.createElement( 'page' );
+            pageContainer.appendChild( page );
+            pageGallery.appendChild( pageContainer );
+            return pageContainer
+        },
+        _mustachePrefix = './mustache/',
+        _mustacheSuffix = '.mustache',
+        _mustacheCache = {},
+        _populate = function ( containerElement, templateName, view ) {
+            var templatePath = [_mustachePrefix, templateName, _mustacheSuffix].join(''),
+                template = _mustacheCache[templatePath] || (_mustacheCache[templatePath] = require( templatePath ));
+            if ( ! template ) {
+                throw new Error( templateName + ' not found' );
+            }
+            containerElement.innerHTML = Mustache.render( template, view );
+            return containerElement
         },
         t, e;
     

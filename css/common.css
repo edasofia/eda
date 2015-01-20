@@ -84,7 +84,9 @@ header {
 }
 footer {
     position: absolute;
+    vertical-align: middle;
     height: 28px;
+    line-height: 28px;
     bottom: 0px;
     border-top: none 0px;
 }
@@ -142,27 +144,23 @@ menu>li.social-icon-16x16y {
     background-image: url(social-iconsheet-18c8r-16x16y.png);
     background-position: 0px -48px;
 }
-menu>li.social-icon-16x16y:hover {
-    background-position-y: -32px;
-}
+menu>li.social-icon-16x16y:hover { background-position-y: -32px; }
 menu>li.social-icon-24x24y {
     width: 24px;
     height: 24px;
     background-image: url(social-iconsheet-18c8r-24x24y.png);
     background-position: 0px -72px;
 }
-menu>li.social-icon-24x24y:hover {
-    background-position-y: -48px;
-}
-menu>li.social-icon-24x24y.social-icon-facebook {
-    background-position-x: -48px;
-}
-menu>li.social-icon-24x24y.social-icon-googleplus {
-    background-position-x: -96px;
-}
-menu>li.social-icon-24x24y.social-icon-wordpress {
-    background-position-x: -408px;
-}
+menu>li.social-icon-24x24y:hover { background-position-y: -48px; }
+menu>li.social-icon-24x24y.social-icon-twitter { background-position: 0px -72px; }
+menu>li.social-icon-24x24y.social-icon-twitter:hover { background-position: 0px -48px; }
+menu>li.social-icon-24x24y.social-icon-facebook { background-position: -48px -72px; }
+menu>li.social-icon-24x24y.social-icon-facebook:hover { background-position: -48px -48px; }
+menu>li.social-icon-24x24y.social-icon-googleplus { background-position: -96px -72px; }
+menu>li.social-icon-24x24y.social-icon-googleplus:hover { background-position: -96px -48px; }
+menu>li.social-icon-24x24y.social-icon-wordpress { background-position: -408px -72px; }
+menu>li.social-icon-24x24y.social-icon-wordpress:hover { background-position: -408px -48px; }
+
 menu>li.social-icon-32x32y {
     width: 32px;
     height: 32px;
@@ -250,4 +248,69 @@ body.expand-header #header-expanded-container {
 }
 #header-social-menu {
     display: inline-block;
+}
+
+#main-page-gallery {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    border: none 0px;
+    vertical-align: top;
+    transition: 500ms all;
+    -webkit-transition: 500ms all;
+    -moz-transition: 500ms all;
+    -o-transition: 500ms all;
+    -ms-transition: 500ms all;
+}
+#main-page-gallery>strip {
+    position: relative;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    border: none 0px;
+    vertical-align: top;
+    transition: 500ms all;
+    -webkit-transition: 500ms all;
+    -moz-transition: 500ms all;
+    -o-transition: 500ms all;
+    -ms-transition: 500ms all;
+}
+page {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    vertical-align: top;
+    transition: 500ms all;
+    -webkit-transition: 500ms all;
+    -moz-transition: 500ms all;
+    -o-transition: 500ms all;
+    -ms-transition: 500ms all;
+}
+
+.box-1-columns, .box-2-columns {
+    white-space: pre-line;
+}
+.box-1-columns {
+    padding: 5px 10px;
+}
+.box-2-columns {
+    padding: 5px 10px;
+}
+.column-box {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    white-space: pre-line;
+    border: solid 1px darkgray;
+    padding: 10px;
+    margin: 10px 1%;
+}
+.box-1-columns>.column-box {
+    width: 98%;
+}
+.box-2-columns>.column-box {
+    width: 48%;
 }
