@@ -78,7 +78,7 @@
                         { index: 7, content: "item 8 summary", image: "images/1136352807_26resized_pic.jpg" },
                         { index: 8, content: "item 9 summary", image: "images/1140258920_8resized_pic.jpg" },
                         { index: 9, content: "item 10 summary", image: "images/1281076942_7resized_pic.jpg" },
-                        { index: 10, content: "item 11 summary", image: "images/1301081094_resized_pic.jpg" },
+                        { index: 10, content: "item 11 summary", image: "images/1325192916_9resized_pic.jpg" },
                         { index: 11, content: "item 12 summary", image: "images/1315851795_4resized_pic.jpg" }
                     ]
                 } );
