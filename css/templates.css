@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<!--
+/*
 The MIT License
 
 Copyright 2015 Erich.
@@ -21,23 +20,45 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
--->
-<html>
-    <head>
-        <title>Eda Sofia</title>
-        <meta charset="UTF-8">
-        <!--meta name="viewport" content="width=device-width, initial-scale=1.0"-->
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.25, maximum-scale=2">
-        <script src='js/common.js'></script>
-        <script src='js/libs/mustache.js/mustache.js'></script>
-        <link href='css/common.css' rel='stylesheet' type='text/css'>
-        <link href='css/templates.css' rel='stylesheet' type='text/css'>
-        <link href='css/index.css' rel='stylesheet' type='text/css'>
-        <script>
-window.addEventListener( 'load', function () {
-    Resize.init();
-}, false );
-        </script>
-    </head>
-    <body><main></main><header></header><footer><button id="footer-toggle-header">toggle header</button></footer></body>
-</html>
+*/
+/* 
+    Created on : Jan 21, 2015, 9:23:45 AM
+    Author     : Erich
+*/
+
+.box-1-columns,
+.box-2-columns,
+.box-3-columns,
+.window-box {
+    white-space: pre-line;
+}
+
+.column-box {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    white-space: pre-line;
+    border: solid 1px darkgray;
+    padding: 5px 10px;
+    margin: 10px 1%;
+}
+.box-1-columns>.column-box {
+    width: 98%;
+}
+.box-2-columns>.column-box {
+    width: 48%;
+}
+.box-3-columns>.column-box {
+    width: 31.33333%;
+}
+
+.window-box {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 98%;
+    height: 320px;
+    border: solid 1px darkgray;
+    padding: 5px 10px;
+    margin: 10px 1%;
+}

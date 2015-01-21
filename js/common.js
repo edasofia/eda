@@ -40,6 +40,7 @@
             var elt, i, t;
             (_head = document.querySelector( 'body>header' )).appendChild( _headMenu = _createMenu( t = require( 'data/header-menu.json' ) ) );
             _head.appendChild( elt = document.createElement( 'div' ) ).id = 'header-expanded-container';
+            elt.appendChild( document.createElement( 'div' ) ).id = 'header-logo';
             elt.appendChild( _headExpandMenu = _createMenu( require( 'data/header-expanded-menu.json' ) ) );
             _head.appendChild( elt = document.createElement( 'div' ) ).id = 'header-subscribe-container';
             elt.appendChild( _headSocialMenu = _createMenu( require( 'data/header-social-menu.json' ) ) );
@@ -57,15 +58,28 @@
                 document.body.classList.toggle( 'expand-header' );
             }, false );
             
-            var tempList = ['simple', 'template1', 'template2', 'template3'],
+            var tempList = ['simple', 'template1', 'template2', 'template3', 'gallery'],
                 k;
-            for ( i = 0; i < 4; i++ ) {
+            for ( i = 0; i < tempList.length; i++ ) {
                 _pageManager.addPage( k = tempList[i%tempList.length], {
                     title: k,
-                    content: "page",
+                    message: "this is a message",
                     index: i + 1,
-                    "main-box": "main-box",
-                    "items": [ "box 1", "box 2", "box 3", "box 4", ]
+                    "main-box": "main content",
+                    "items": [
+                        { content: "item 1 summary" },
+                        { content: "item 2 summary" },
+                        { content: "item 3 summary" },
+                        { content: "item 4 summary" },
+                        { content: "item 5 summary" },
+                        { content: "item 6 summary" },
+                        { content: "item 7 summary" },
+                        { content: "item 8 summary" },
+                        { content: "item 9 summary" },
+                        { content: "item 10 summary" },
+                        { content: "item 11 summary" },
+                        { content: "item 12 summary" }
+                    ]
                 } );
                 _foot.appendChild( t = document.createElement( 'button' ) ).textContent = k;
                 t.pageIndex = i;
@@ -77,6 +91,7 @@
             
             _resize();
             window.addEventListener( 'resize', _resize, false );
+            window.addEventListener( 'orientationchange', _resize, false );
         },
         _resize = function () {
             var wide = window.innerWidth,
