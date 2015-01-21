@@ -2,6 +2,6 @@
 <div class="box-1-columns"><div class="column-box">{{main-box}}</div></div>
 <gallery><strip style="left: 0px">{{#items}}{{> galleryitem}}{{/items}}</strip></div></gallery>
 <div>
-<button onclick="var s,t; (s=(t=this.parentElement.querySelector( 'gallery>strip' )).style).left=Math.min(0,  parseInt(s.left) + 100) + '%'">prev</button>
-<button onclick="var s,t; (s=(t=this.parentElement.querySelector( 'gallery>strip' )).style).left=Math.max((t.childElementCount-1) * -100, parseInt(s.left) - 100) + '%'">next</button></div>
+<button onclick="var s,t; (s=(t=this.parentElement.parentElement.querySelector( 'gallery>strip' )).style).left=Math.min(0,  parseInt(s.left) + 100) + '%'">prev</button>
+<button onclick="var s,t; (s=(t=this.parentElement.parentElement.querySelector( 'gallery>strip' )).style).left=Math.max((t.childElementCount-1) * -100, parseInt(s.left) - 100) + '%'">next</button></div>
 <div class="box-3-columns">{{#items}}<div index={{index}} class="column-box" onclick="var s,t; (s=(t=this.parentElement.parentElement.querySelector( 'gallery>strip' )).style).left=({{index}} * -100) + '%'">{{content}}</div>{{/items}}</div>
