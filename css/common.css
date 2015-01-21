@@ -331,7 +331,10 @@ body.expand-header #header-expanded-container {
     display: inline-block;
 }
 
-#main-page-gallery {
+#main-page-gallery,
+gallery {
+    position: relative;
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -345,9 +348,11 @@ body.expand-header #header-expanded-container {
     -o-transition: 500ms all;
     -ms-transition: 500ms all;
 }
-#main-page-gallery>strip {
+strip {
     position: relative;
+    box-sizing: border-box;
     white-space: nowrap;
+    height: 100%;
     padding: 0;
     margin: 0;
     border: none 0px;
@@ -359,6 +364,8 @@ body.expand-header #header-expanded-container {
     -ms-transition: 500ms all;
 }
 page {
+    position: relative;
+    box-sizing: border-box;
     display: inline-block;
     width: 100%;
     height: 100%;

@@ -58,27 +58,28 @@
                 document.body.classList.toggle( 'expand-header' );
             }, false );
             
-            var tempList = ['simple', 'template1', 'template2', 'template3', 'gallery'],
-                k;
+            var tempList = ['simple', 'template1', 'template2', 'template3', 'template4'],
+                t, k;
+            _loadMustache( 'galleryitem' );
             for ( i = 0; i < tempList.length; i++ ) {
                 _pageManager.addPage( k = tempList[i%tempList.length], {
                     title: k,
                     message: "this is a message",
-                    index: i + 1,
+                    index: i,
                     "main-box": "main content",
                     "items": [
-                        { content: "item 1 summary" },
-                        { content: "item 2 summary" },
-                        { content: "item 3 summary" },
-                        { content: "item 4 summary" },
-                        { content: "item 5 summary" },
-                        { content: "item 6 summary" },
-                        { content: "item 7 summary" },
-                        { content: "item 8 summary" },
-                        { content: "item 9 summary" },
-                        { content: "item 10 summary" },
-                        { content: "item 11 summary" },
-                        { content: "item 12 summary" }
+                        { index: 0, content: "item 1 summary", image: "images/1023747915_2resized_pic.jpg" },
+                        { index: 1, content: "item 2 summary", image: "images/1044387878_14resized_pic.jpg" },
+                        { index: 2, content: "item 3 summary", image: "images/1060548545_2resized_pic.jpg" },
+                        { index: 3, content: "item 4 summary", image: "images/1080666553_7resized_pic.jpg" },
+                        { index: 4, content: "item 5 summary", image: "images/1080989085_6resized_pic.jpg" },
+                        { index: 5, content: "item 6 summary", image: "images/1105158563_2resized_pic.jpg" },
+                        { index: 6, content: "item 7 summary", image: "images/1131345982_2resized_pic.jpg" },
+                        { index: 7, content: "item 8 summary", image: "images/1136352807_26resized_pic.jpg" },
+                        { index: 8, content: "item 9 summary", image: "images/1140258920_8resized_pic.jpg" },
+                        { index: 9, content: "item 10 summary", image: "images/1281076942_7resized_pic.jpg" },
+                        { index: 10, content: "item 11 summary", image: "images/1301081094_resized_pic.jpg" },
+                        { index: 11, content: "item 12 summary", image: "images/1315851795_4resized_pic.jpg" }
                     ]
                 } );
                 _foot.appendChild( t = document.createElement( 'button' ) ).textContent = k;
@@ -212,7 +213,7 @@
                 addPage: { value: function ( template, view ) {
                     var page, content, i;
                     if ( arguments.length > 1 ) {
-                        _populate( content = document.createElement( 'div' ), template, view )
+                        _populate( content = document.createElement( 'page' ), template, view )
                     } else if ( template instanceof Node ) {
                         content = template
                     } else {
@@ -239,20 +240,22 @@
         _addPage = function ( pageGallery, page ) {
             var pageContainer = document.createElement( 'page' );
             pageContainer.appendChild( page );
-            pageGallery.appendChild( pageContainer );
+            pageGallery.appendChild( page );
             return pageContainer
         },
         _mustachePrefix = './mustache/',
         _mustacheSuffix = '.mustache',
         _mustacheCache = {},
-        _populate = function ( containerElement, templateName, view ) {
+        _loadMustache = function ( templateName ) {
             var templatePath = [_mustachePrefix, templateName, _mustacheSuffix].join(''),
-                template = _mustacheCache[templatePath] || (_mustacheCache[templatePath] = require( templatePath ));
+                template = _mustacheCache[templateName] || (_mustacheCache[templateName] = require( templatePath ));
             if ( ! template ) {
-                throw new Error( templateName + ' not found' );
+                throw new Error( templatePath + ' not found' );
             }
-            containerElement.innerHTML = Mustache.render( template, view );
-            return containerElement
+            return template
+        },
+        _populate = function ( containerElement, templateName, view ) {
+            return containerElement.innerHTML = Mustache.render( _loadMustache( templateName ), view, _mustacheCache );
         },
         t, e;
     
